@@ -46,20 +46,20 @@
   --card-foreground: oklch(0.18 0.03 160);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.18 0.03 160);
-  --primary: oklch(0.32 0.06 160);            /* deep forest green */
+  --primary: oklch(0.32 0.06 160); /* deep forest green */
   --primary-foreground: oklch(0.98 0.01 130);
   --secondary: oklch(0.95 0.02 140);
   --secondary-foreground: oklch(0.22 0.05 160);
   --muted: oklch(0.96 0.01 140);
   --muted-foreground: oklch(0.45 0.02 160);
-  --accent: oklch(0.92 0.12 125);             /* soft lime tint */
+  --accent: oklch(0.92 0.12 125); /* soft lime tint */
   --accent-foreground: oklch(0.22 0.05 160);
-  --lime: oklch(0.91 0.18 125);               /* bright lime CTA */
-  --lime-foreground: oklch(0.20 0.05 160);
-  --deep: oklch(0.22 0.04 160);               /* near-black green */
+  --lime: oklch(0.91 0.18 125); /* bright lime CTA */
+  --lime-foreground: oklch(0.2 0.05 160);
+  --deep: oklch(0.22 0.04 160); /* near-black green */
   --destructive: oklch(0.55 0.22 27);
   --destructive-foreground: oklch(0.98 0.01 130);
-  --border: oklch(0.90 0.01 140);
+  --border: oklch(0.9 0.01 140);
   --input: oklch(0.92 0.01 140);
   --ring: oklch(0.91 0.18 125);
 }
@@ -67,20 +67,20 @@
 .dark {
   --background: oklch(0.16 0.02 160);
   --foreground: oklch(0.96 0.01 130);
-  --card: oklch(0.20 0.03 160);
+  --card: oklch(0.2 0.03 160);
   --card-foreground: oklch(0.96 0.01 130);
-  --popover: oklch(0.20 0.03 160);
+  --popover: oklch(0.2 0.03 160);
   --popover-foreground: oklch(0.96 0.01 130);
   --primary: oklch(0.91 0.18 125);
-  --primary-foreground: oklch(0.20 0.05 160);
+  --primary-foreground: oklch(0.2 0.05 160);
   --secondary: oklch(0.26 0.04 160);
   --secondary-foreground: oklch(0.96 0.01 130);
   --muted: oklch(0.24 0.03 160);
-  --muted-foreground: oklch(0.70 0.03 140);
-  --accent: oklch(0.30 0.05 160);
+  --muted-foreground: oklch(0.7 0.03 140);
+  --accent: oklch(0.3 0.05 160);
   --accent-foreground: oklch(0.96 0.01 130);
   --lime: oklch(0.91 0.18 125);
-  --lime-foreground: oklch(0.20 0.05 160);
+  --lime-foreground: oklch(0.2 0.05 160);
   --deep: oklch(0.12 0.02 160);
   --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 16%);
@@ -88,20 +88,34 @@
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv11";
   }
-  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
 }
 
 @layer utilities {
-  .container-x { @apply mx-auto w-full max-w-7xl px-5 sm:px-8; }
-  .pill { @apply rounded-full; }
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+  .pill {
+    @apply rounded-full;
+  }
   .btn-lime {
     @apply inline-flex items-center gap-2 rounded-full bg-[var(--lime)] px-6 py-3 text-sm font-semibold text-[var(--lime-foreground)] transition hover:brightness-95 hover:scale-[1.02];
   }
