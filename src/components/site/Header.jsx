@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { NavLink } from "react-router-dom";
 import { ArrowUpRight, Phone, Menu, X } from "lucide-react";
 import * as images from "@/data/images.js";
+import { scrollToTop } from "@/lib/scroll-to-top.js";
 
 const nav = [
   { to: "/", label: "Home", end: true },
@@ -71,7 +72,10 @@ function MobileMenu({ open, onClose }) {
                 <NavLink
                   to={n.to}
                   end={n.end}
-                  onClick={onClose}
+                  onClick={() => {
+                    onClose();
+                    scrollToTop();
+                  }}
                   className={({ isActive }) => mobileNavClass(isActive)}
                 >
                   {n.label}
@@ -103,7 +107,10 @@ function MobileMenu({ open, onClose }) {
           </a>
           <NavLink
             to="/contact"
-            onClick={onClose}
+            onClick={() => {
+              onClose();
+              scrollToTop();
+            }}
             className="btn-lime w-full justify-center py-4 text-base"
           >
             Get a Quote <ArrowUpRight className="h-5 w-5" />
@@ -140,7 +147,14 @@ export function Header() {
     <>
       <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/60">
         <div className="container-x flex h-24 items-center justify-between gap-4">
-          <NavLink to="/" className="flex shrink-0 items-center py-1" onClick={closeMenu}>
+          <NavLink
+            to="/"
+            className="flex shrink-0 items-center py-1"
+            onClick={() => {
+              closeMenu();
+              scrollToTop();
+            }}
+          >
             <img
               src={images.logo}
               alt="Sargas Group — Engineering Sustainability"
@@ -157,6 +171,7 @@ export function Header() {
                 key={n.to}
                 to={n.to}
                 end={n.end}
+                onClick={scrollToTop}
                 className={({ isActive }) => navClass(isActive)}
               >
                 {n.label}
@@ -171,7 +186,7 @@ export function Header() {
               </span>
               <span className="font-semibold">+91 96119 69686</span>
             </a>
-            <NavLink to="/contact" className="btn-lime">
+            <NavLink to="/contact" className="btn-lime" onClick={scrollToTop}>
               Get a Quote <ArrowUpRight className="h-4 w-4" />
             </NavLink>
           </div>

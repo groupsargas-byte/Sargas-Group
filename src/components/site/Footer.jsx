@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import * as images from "@/data/images.js";
+import { scrollToTop } from "@/lib/scroll-to-top.js";
 
 const CONTACT_EMAIL = "contact@sargasgroup.com";
 
@@ -41,6 +42,7 @@ export function Footer() {
           <Link
             to="/"
             className="inline-flex rounded-lg bg-white"
+            onClick={scrollToTop}
           >
             <img
               src={images.logo}
@@ -62,7 +64,7 @@ export function Footer() {
           <ul className="space-y-2 text-sm">
             {exploreLinks.map(([label, href]) => (
               <li key={href}>
-                <Link to={href} className="transition hover:text-[var(--lime)]">
+                <Link to={href} className="transition hover:text-[var(--lime)]" onClick={scrollToTop}>
                   {label}
                 </Link>
               </li>
