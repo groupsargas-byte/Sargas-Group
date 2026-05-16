@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Mail, MapPin, Phone, User } from "lucide-react";
 import { ContactForm } from "@/components/site/ContactForm.jsx";
 import * as images from "@/data/images.js";
+import { Reveal, RevealStagger } from "@/components/site/Reveal.jsx";
 
 const CONTACT_EMAIL = "contact@sargasgroup.com";
 
@@ -45,7 +46,7 @@ export default function ContactPage() {
     <>
       <section className="container-x py-12 md:py-16 lg:py-10">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-          <div>
+          <Reveal direction="right">
             <span className="eyebrow">Contact</span>
             <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-[var(--primary)] md:text-5xl lg:text-6xl">
               We&apos;re ready to assist you.
@@ -67,8 +68,8 @@ export default function ContactPage() {
                 {CONTACT_EMAIL}
               </a>
             </div>
-          </div>
-          <div className="relative overflow-hidden rounded-3xl">
+          </Reveal>
+          <Reveal direction="left" className="relative overflow-hidden rounded-3xl">
             <img
               src={images.contactHero}
               alt="Recycling and waste management"
@@ -76,20 +77,21 @@ export default function ContactPage() {
               height={1280}
               className="aspect-[4/3] w-full object-contain"
             />
-          </div>
+          </Reveal>
         </div>
       </section>
 
       <section className="border-t border-border bg-secondary/30 py-16 md:py-20">
         <div className="container-x grid gap-12 lg:grid-cols-2 lg:gap-14">
-          <div className="space-y-5">
+          <Reveal className="space-y-5">
             <h2 className="font-display text-2xl font-bold text-[var(--primary)] md:text-3xl">
               Get in touch
             </h2>
-            {contacts.map((c) => (
-              <div
+            {contacts.map((c, i) => (
+              <Reveal
                 key={c.title}
-                className="flex gap-4 rounded-3xl border border-border bg-card p-5 shadow-sm"
+                delay={i * 80}
+                className="flex gap-4 rounded-3xl border border-border bg-card p-5 shadow-sm card-lift"
               >
                 <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[var(--lime)]">
                   <c.icon className="h-5 w-5 text-[var(--lime-foreground)]" />
@@ -104,23 +106,25 @@ export default function ContactPage() {
                     {c.linkLabel}
                   </a>
                 </div>
-              </div>
+              </Reveal>
             ))}
-          </div>
+          </Reveal>
 
+          <Reveal direction="left" delay={120}>
           <ContactForm />
+          </Reveal>
         </div>
       </section>
 
-      <section className="container-x pb-20 md:pb-28">
+      <section className=" pt-10 container-x pb-20 md:pb-28 ">
         <h2 className="font-display text-2xl font-bold text-[var(--primary)] md:text-3xl">
           Our offices
         </h2>
         <p className="mt-2 max-w-2xl text-muted-foreground">
           Visit or navigate to either of our Bengaluru Rural facilities.
         </p>
-        <div className="mt-10 grid gap-8 lg:grid-cols-2">
-          <article className="overflow-hidden rounded-3xl border border-border bg-card shadow-sm">
+        <RevealStagger className="mt-10 grid gap-8 lg:grid-cols-2" stagger={120}>
+          <article className="overflow-hidden rounded-3xl border border-border bg-card shadow-sm card-lift">
             <div className="aspect-video w-full bg-muted">
               <iframe
                 title="Map — Sargas Enviro Pvt. Ltd. (SEPL)"
@@ -155,7 +159,7 @@ export default function ContactPage() {
             </div>
           </article>
 
-          <article className="overflow-hidden rounded-3xl border border-border bg-card shadow-sm">
+          <article className="overflow-hidden rounded-3xl border border-border bg-card shadow-sm card-lift">
             <div className="aspect-video w-full bg-muted">
               <iframe
                 title="Map — Sargas Waste Management Pvt. Ltd. (SWMPL)"
@@ -189,7 +193,7 @@ export default function ContactPage() {
               </div>
             </div>
           </article>
-        </div>
+        </RevealStagger>
       </section>
     </>
   );

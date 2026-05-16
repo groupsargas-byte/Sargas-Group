@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Phone, Target, Eye, Sparkles } from "lucide-react";
 import * as images from "@/data/images.js";
+import { Reveal, RevealStagger } from "@/components/site/Reveal.jsx";
 
 const values = [
   ["Integrity", "Transparent and ethical operations"],
@@ -27,7 +28,7 @@ export default function AboutPage() {
     <>
       <section className="container-x py-16 md:py-14">
         <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
-          <div className="order-2 lg:order-1">
+          <Reveal direction="left" className="order-2 lg:order-1">
             <img
               src={images.about}
               alt="Sargas Group waste and environmental operations"
@@ -36,8 +37,8 @@ export default function AboutPage() {
               height={1000}
               className="aspect-[2/1] w-full object-contain"
             />
-          </div>
-          <div className="order-1 lg:order-2">
+          </Reveal>
+          <Reveal direction="right" className="order-1 lg:order-2">
             <span className="eyebrow">About</span>
             <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-[var(--primary)] md:text-5xl">
               About Our Company
@@ -50,10 +51,10 @@ export default function AboutPage() {
             <p className="mt-4 text-base font-medium leading-relaxed text-[var(--primary)] italic">
               &quot;Our commitment is to create a cleaner, healthier and safer planet.&quot;
             </p>
-          </div>
+          </Reveal>
         </div>
 
-        <div className="mt-4 grid gap-6 md:grid-cols-2 lg:mt-10">
+        <RevealStagger className="mt-4 grid gap-6 md:grid-cols-2 lg:mt-10" stagger={100}>
           <div className="rounded-3xl border border-border bg-card p-8 shadow-sm">
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--lime)]">
               <Target className="h-6 w-6 text-[var(--lime-foreground)]" aria-hidden />
@@ -78,9 +79,9 @@ export default function AboutPage() {
               environmental stewardship and customer service.
             </p>
           </div>
-        </div>
+        </RevealStagger>
 
-        <div className="mx-auto mt-14 max-w-5xl rounded-3xl border border-border bg-secondary/40 p-8 text-center md:p-10 lg:mt-20">
+        <Reveal className="mx-auto mt-14 max-w-5xl rounded-3xl border border-border bg-secondary/40 p-8 text-center md:p-10 lg:mt-20">
           <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
             <h2 className="font-display text-2xl font-bold text-[var(--primary)] md:text-3xl">
               Our Values
@@ -100,11 +101,12 @@ export default function AboutPage() {
               </li>
             ))}
           </ul>
-        </div>
+        </Reveal>
       </section>
 
       <section className="border-t border-border bg-muted/30 py-16 md:py-24">
         <div className="container-x">
+          <Reveal>
           <h2 className="font-display text-3xl font-bold text-[var(--primary)] md:text-4xl">
             Our Operating Structure
           </h2>
@@ -112,8 +114,9 @@ export default function AboutPage() {
             SARGAS operates through two specialized entities to ensure domain expertise, regulatory
             compliance, and operational efficiency:
           </p>
+          </Reveal>
 
-          <div className="mt-12 grid gap-8 lg:grid-cols-2">
+          <RevealStagger className="mt-12 grid gap-8 lg:grid-cols-2" stagger={120}>
             <div className="group flex flex-col rounded-3xl border-2 border-[var(--primary)]/20 bg-white p-8 shadow-sm transition-colors duration-200 md:p-10 hover:border-[var(--primary)] hover:bg-[var(--primary)]">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--primary)] transition-colors group-hover:text-white/90">
                 Hazardous &amp; industrial
@@ -146,17 +149,20 @@ export default function AboutPage() {
                 large-scale collection, recycling, and processing services.
               </p>
             </div>
-          </div>
+          </RevealStagger>
 
+          <Reveal>
           <p className="mx-auto mt-10 max-w-3xl text-center text-base leading-relaxed text-muted-foreground md:text-lg">
             Together, these entities form a unified ecosystem delivering comprehensive waste
             management solutions — one partnership for compliance, recovery and responsible
             disposal.
           </p>
+          </Reveal>
         </div>
       </section>
 
       <section className="container-x pb-20 md:pb-28">
+        <Reveal>
         <div className="rounded-[2rem] bg-[var(--lime)] p-10 text-[var(--lime-foreground)] md:flex md:flex-row md:items-center md:justify-between md:gap-8 md:p-16">
           <div>
             <h2 className="font-display text-3xl font-bold md:text-4xl lg:text-5xl">
@@ -183,6 +189,7 @@ export default function AboutPage() {
             </a>
           </div>
         </div>
+        </Reveal>
       </section>
     </>
   );

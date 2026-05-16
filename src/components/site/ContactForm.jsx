@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Send } from "lucide-react";
 
-const WEB3FORMS_ACCESS_KEY = "3f41f24b-dea9-4a1f-9282-daaae11662c5";
+const WEB3FORMS_ACCESS_KEY = "9cafaf0d-3542-4aba-8b20-3be897d4281d";
 
 const inputClass =
   "w-full rounded-full bg-white/10 border border-white/15 px-5 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-[var(--lime)] focus:ring-1 focus:ring-[var(--lime)]";

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import * as images from "@/data/images.js";
+import { Reveal } from "@/components/site/Reveal.jsx";
 
 const groups = [
   {
@@ -145,10 +146,12 @@ export default function ServicesPage() {
   return (
     <>
       <section className="container-x border-b border-border/60 py-12 md:py-16">
+        <Reveal immediate>
         <span className="eyebrow">What we do</span>
         <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-[var(--primary)] md:text-5xl">
           Our Services
         </h1>
+        </Reveal>
       </section>
 
       {groups.map((g, gi) => (
@@ -157,7 +160,7 @@ export default function ServicesPage() {
           className={gi % 2 === 0 ? "container-x py-20" : "bg-secondary/50 py-20"}
         >
           <div className={gi % 2 === 0 ? "" : "container-x"}>
-            <div className="grid lg:grid-cols-3 gap-10">
+            <Reveal className="grid lg:grid-cols-3 gap-10">
               <div className="lg:sticky lg:top-28 self-start">
                 <img
                   src={g.img}
@@ -170,8 +173,8 @@ export default function ServicesPage() {
                 <span className="eyebrow mt-6">{g.eyebrow}</span>
               </div>
               <div className="lg:col-span-2 space-y-6">
-                {g.items.map((it) => (
-                  <div key={it.t} className="rounded-3xl border border-border bg-card p-7">
+                {g.items.map((it, ii) => (
+                  <Reveal key={it.t} delay={ii * 70} className="rounded-3xl border border-border bg-card p-7 card-lift">
                     <h3 className="font-display text-2xl font-bold text-[var(--primary)]">
                       {it.t}
                     </h3>
@@ -184,15 +187,16 @@ export default function ServicesPage() {
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </Reveal>
                 ))}
               </div>
-            </div>
+            </Reveal>
           </div>
         </section>
       ))}
 
       <section className="container-x pt-10">
+        <Reveal>
         <div className="rounded-[2rem] bg-[var(--deep)] text-white p-10 md:p-14 flex flex-col lg:flex-row gap-6 justify-between items-start lg:items-center">
           <h2 className="text-3xl md:text-4xl font-bold max-w-2xl">
             Need a custom waste programme for your facility?
@@ -201,6 +205,7 @@ export default function ServicesPage() {
             Request a proposal <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>
+        </Reveal>
       </section>
     </>
   );

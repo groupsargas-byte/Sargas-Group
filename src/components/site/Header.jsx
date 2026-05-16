@@ -145,7 +145,7 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/60">
+      <header className="header-enter sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/60">
         <div className="container-x flex h-24 items-center justify-between gap-4">
           <NavLink
             to="/"
@@ -158,9 +158,9 @@ export function Header() {
             <img
               src={images.logo}
               alt="Sargas Group — Engineering Sustainability"
-              className="h-12 w-auto sm:h-14 md:h-16 max-h-16 object-contain object-left"
-              width={320}
-              height={58}
+              className="h-14 w-auto sm:h-16 md:h-20 max-h-20 object-contain object-left"
+              width={400}
+              height={72}
               decoding="async"
             />
           </NavLink>

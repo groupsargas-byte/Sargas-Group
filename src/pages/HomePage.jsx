@@ -14,6 +14,7 @@ import {
   ClipboardCheck,
 } from "lucide-react";
 import * as images from "@/data/images.js";
+import { Reveal, RevealStagger } from "@/components/site/Reveal.jsx";
 
 /** Four service lines on home — full detail lives on `/services`. */
 const serviceTypes = [
@@ -106,7 +107,7 @@ export default function HomePage() {
           height={1080}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[var(--deep)] via-[var(--deep)]/85 to-transparent" />
-        <div className="container-x relative py-4 lg:py-16 text-white">
+        <div className="hero-stagger container-x relative py-4 lg:py-16 text-white">
           <span className="eyebrow !bg-[var(--lime)]/20 !text-[var(--lime)]">
             Engineering Sustainability
           </span>
@@ -144,7 +145,7 @@ export default function HomePage() {
 
       <section className="container-x py-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="relative">
+          <Reveal direction="left" className="relative">
             <img
               src={images.about}
               alt="Modern Sargas waste facility"
@@ -153,7 +154,7 @@ export default function HomePage() {
               height={1000}
               className="rounded-3xl w-full aspect-[6/5] object-contain"
             />
-            <div className="absolute -bottom-6 -right-6 hidden md:flex bg-[var(--lime)] text-[var(--lime-foreground)] rounded-2xl p-6 shadow-xl max-w-[220px]">
+            <div className="animate-float absolute -bottom-6 -right-6 hidden md:flex bg-[var(--lime)] text-[var(--lime-foreground)] rounded-2xl p-6 shadow-xl max-w-[220px]">
               <div>
                 <div className="text-3xl font-display font-bold">100%</div>
                 <div className="text-xs font-semibold uppercase tracking-wider mt-1">
@@ -161,8 +162,8 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-          </div>
-          <div>
+          </Reveal>
+          <Reveal direction="right">
             <span className="eyebrow">About Sargas</span>
             <h2 className="mt-4 text-3xl md:text-4xl font-bold text-[var(--primary)]">
               A unified ecosystem for waste — from source to recovery.
@@ -193,13 +194,13 @@ export default function HomePage() {
             <Link to="/about" className="btn-lime mt-8">
               Learn more <ArrowUpRight className="h-4 w-4" />
             </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       <section className="bg-secondary/50 py-24">
         <div className="container-x">
-          <div className="flex flex-wrap items-end justify-between gap-6 mb-14">
+          <Reveal className="flex flex-wrap items-end justify-between gap-6 mb-14">
             <div>
               <span className="eyebrow">What we do</span>
               <h2 className="mt-3 text-4xl md:text-5xl font-bold text-[var(--primary)] max-w-3xl">
@@ -212,14 +213,14 @@ export default function HomePage() {
             <Link to="/services" className="btn-lime shrink-0">
               All services <ArrowUpRight className="h-4 w-4" />
             </Link>
-          </div>
+          </Reveal>
 
           <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-            {serviceTypes.map((s) => (
+            {serviceTypes.map((s, i) => (
+              <Reveal key={s.title} delay={i * 80} className="h-full">
               <Link
-                key={s.title}
                 to={s.to}
-                className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition hover:-translate-y-0.5 hover:border-[var(--primary)]/25 hover:shadow-md"
+                className="card-lift group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-sm hover:border-[var(--primary)]/25"
               >
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
@@ -255,52 +256,55 @@ export default function HomePage() {
                   </span>
                 </div>
               </Link>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
       <section className="container-x py-24">
-        <div className="text-center max-w-2xl mx-auto">
+        <Reveal className="text-center max-w-2xl mx-auto">
           <span className="eyebrow">Our approach</span>
           <h2 className="mt-3 text-4xl md:text-5xl font-bold text-[var(--primary)]">
             Six steps from waste to value.
           </h2>
-        </div>
-        <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        </Reveal>
+        <RevealStagger className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-5" stagger={70}>
           {approach.map((a) => (
             <div
               key={a.n}
-              className="relative rounded-3xl border border-border bg-card p-7 grain-bg"
+              className="card-lift relative rounded-3xl border border-border bg-card p-7 grain-bg"
             >
               <div className="text-5xl font-display font-bold text-[var(--lime)]">{a.n}</div>
               <h3 className="mt-3 font-display text-xl font-bold text-[var(--primary)]">{a.t}</h3>
               <p className="text-sm text-muted-foreground mt-2">{a.d}</p>
             </div>
           ))}
-        </div>
+        </RevealStagger>
       </section>
 
       <section className="bg-[var(--deep)] text-white py-24">
         <div className="container-x">
           <div className="grid lg:grid-cols-2 gap-12 items-end">
-            <div>
+            <Reveal>
               <span className="eyebrow !bg-white/10 !text-[var(--lime)]">Why Sargas</span>
               <h2 className="mt-3 text-4xl md:text-5xl font-bold">
                 Built for industry. Trusted for compliance.
               </h2>
-            </div>
+            </Reveal>
+            <Reveal direction="right" delay={100}>
             <p className="text-white/70 text-lg">
               From municipal collection to hazardous waste TSDF disposal, we combine certified
               processes, transparent reporting and a 24/7 operations team.
             </p>
+            </Reveal>
           </div>
 
-          <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <RevealStagger className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5" stagger={75}>
             {why.map((w) => (
               <div
                 key={w.t}
-                className="rounded-3xl bg-white/[0.04] border border-white/10 p-7 hover:bg-white/[0.07] transition"
+                className="card-lift rounded-3xl bg-white/[0.04] border border-white/10 p-7 hover:bg-white/[0.07]"
               >
                 <span className="grid h-12 w-12 place-items-center rounded-full bg-[var(--lime)]">
                   <w.icon className="h-5 w-5 text-[var(--lime-foreground)]" />
@@ -309,11 +313,12 @@ export default function HomePage() {
                 <p className="text-sm text-white/65 mt-2">{w.d}</p>
               </div>
             ))}
-          </div>
+          </RevealStagger>
         </div>
       </section>
 
       <section className="container-x py-24">
+        <Reveal>
         <div className="rounded-[2rem] bg-[var(--lime)] p-10 md:p-16 text-[var(--lime-foreground)] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
           <div>
             <h2 className="text-4xl md:text-5xl font-bold max-w-2xl">
@@ -338,6 +343,7 @@ export default function HomePage() {
             </a>
           </div>
         </div>
+        </Reveal>
       </section>
     </>
   );

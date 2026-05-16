@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Reveal } from "@/components/site/Reveal.jsx";
 
 export default function NotFoundPage() {
   useEffect(() => {
@@ -8,7 +9,7 @@ export default function NotFoundPage() {
 
   return (
     <div className="flex min-h-[60vh] items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
+      <Reveal immediate className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
         <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
         <p className="mt-2 text-sm text-muted-foreground">
@@ -22,7 +23,7 @@ export default function NotFoundPage() {
             Go home
           </Link>
         </div>
-      </div>
+      </Reveal>
     </div>
   );
 }

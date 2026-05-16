@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import * as images from "@/data/images.js";
+import { Reveal } from "@/components/site/Reveal.jsx";
 
 const certifications = [
   {
@@ -52,6 +53,7 @@ export default function CertificationsPage() {
   return (
     <>
       <section className="container-x border-b border-border/60 py-12 md:py-16">
+        <Reveal immediate>
         <span className="eyebrow">Compliance</span>
         <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-[var(--primary)] md:text-5xl">
           Certifications &amp; Authorisations
@@ -60,14 +62,17 @@ export default function CertificationsPage() {
           Sargas Group operates under recognised national and international standards for waste
           handling and quality management.
         </p>
+        </Reveal>
       </section>
 
       <section className="container-x py-16 md:py-20">
         <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {certifications.map((cert, index) => (
-            <li
+            <Reveal
+              as="li"
               key={cert.title}
-              className={`group flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition hover:border-[var(--primary)]/30 hover:shadow-md ${
+              delay={index * 80}
+              className={`group flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-sm card-lift hover:border-[var(--primary)]/30 ${
                 index === 4 ? "sm:col-span-2 lg:col-span-1 lg:col-start-2" : ""
               }`}
             >
@@ -89,7 +94,7 @@ export default function CertificationsPage() {
                   {cert.description}
                 </p>
               </div>
-            </li>
+            </Reveal>
           ))}
         </ul>
       </section>

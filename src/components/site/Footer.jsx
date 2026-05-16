@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import * as images from "@/data/images.js";
 import { scrollToTop } from "@/lib/scroll-to-top.js";
+import { Reveal } from "@/components/site/Reveal.jsx";
 
 const CONTACT_EMAIL = "contact@sargasgroup.com";
 
@@ -37,7 +38,7 @@ const offices = [
 export function Footer() {
   return (
     <footer className="mt-24 bg-[var(--deep)] text-white/85">
-      <div className="container-x py-16 grid gap-10 lg:grid-cols-4">
+      <Reveal className="container-x py-16 grid gap-10 lg:grid-cols-4">
         <div className="lg:col-span-1">
           <Link
             to="/"
@@ -125,7 +126,7 @@ export function Footer() {
             ))}
           </ul>
         </div>
-      </div>
+      </Reveal>
 
       <div className="border-t border-white/10">
         <div className="container-x flex flex-col items-center justify-between gap-4 py-6 text-xs text-white/55 sm:flex-row">
