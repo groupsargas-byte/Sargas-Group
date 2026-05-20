@@ -1,11 +1,10 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Reveal } from "@/components/site/Reveal.jsx";
+import { usePageSeo } from "@/hooks/usePageSeo.js";
+import { PAGE_SEO } from "@/lib/seo.js";
 
 export default function NotFoundPage() {
-  useEffect(() => {
-    document.title = "404 — Sargas Group";
-  }, []);
+  usePageSeo(PAGE_SEO.notFound);
 
   return (
     <div className="flex min-h-[60vh] items-center justify-center bg-background px-4">

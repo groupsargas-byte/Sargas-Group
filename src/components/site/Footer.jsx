@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import * as images from "@/data/images.js";
+import { CONTACT_EMAIL, DIRECTORS, OFFICES, whatsappUrl } from "@/data/contact.js";
 import { scrollToTop } from "@/lib/scroll-to-top.js";
 import { Reveal } from "@/components/site/Reveal.jsx";
-
-const CONTACT_EMAIL = "contact@sargasgroup.com";
+import { LazyImage } from "@/components/site/LazyImage.jsx";
+import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon.jsx";
 
 const exploreLinks = [
   ["About", "/about"],
@@ -13,45 +14,22 @@ const exploreLinks = [
   ["Contact", "/contact"],
 ];
 
-const phones = [
-  { label: "CEO — Jagadish K", number: "+91 96119 69686", href: "tel:+919611969686" },
-  { label: "COO — Sachin Raj C", number: "+91 79961 61777", href: "tel:+917996161777" },
-];
-
-const offices = [
-  {
-    short: "SEPL",
-    name: "Sargas Enviro Pvt. Ltd.",
-    address:
-      "Plot 319-D, Sompura Industrial Area 1st Stage, Nidavanda, Dobbaspete, Bengaluru Rural — 562132",
-    mapUrl: "https://maps.app.goo.gl/ZFHfJQQpKkCdyZYPA",
-  },
-  {
-    short: "SWMPL",
-    name: "Sargas Waste Management Pvt. Ltd.",
-    address:
-      "Plot 12-A, Dobbaspete Industrial Area 1st Phase, Yedahalli, Bengaluru Rural — 562111",
-    mapUrl: "https://maps.app.goo.gl/nEwMuzKCNLjyerLZ7",
-  },
-];
-
 export function Footer() {
   return (
     <footer className="mt-24 bg-[var(--deep)] text-white/85">
-      <Reveal className="container-x py-16 grid gap-10 lg:grid-cols-4">
-        <div className="lg:col-span-1">
+      <Reveal className="container-x grid gap-10 py-16 lg:grid-cols-12 lg:gap-8">
+        <div className="lg:col-span-3">
           <Link
             to="/"
-            className="inline-flex rounded-lg bg-white"
+            className="inline-flex rounded-lg bg-white px-2 py-1"
             onClick={scrollToTop}
           >
-            <img
-              src={images.logo}
-              alt="Sargas Group — Engineering Sustainability"
-              className="h-12 w-auto max-w-[min(100%,280px)] object-contain object-left sm:h-14"
-              width={280}
-              height={52}
-              decoding="async"
+            <LazyImage
+              src={images.logoFooter}
+              alt="Sargas — Engineering Sustainability"
+              className="h-14 w-auto max-w-[min(100%,260px)] object-contain object-left sm:h-16"
+              width={260}
+              height={64}
             />
           </Link>
           <p className="mt-4 text-sm leading-relaxed text-white/65">
@@ -60,7 +38,7 @@ export function Footer() {
           </p>
         </div>
 
-        <div>
+        <div className="lg:col-span-2">
           <h4 className="mb-4 font-semibold text-white">Explore</h4>
           <ul className="space-y-2 text-sm">
             {exploreLinks.map(([label, href]) => (
@@ -73,24 +51,44 @@ export function Footer() {
           </ul>
         </div>
 
-        <div>
+        <div className="min-w-0 lg:col-span-4">
           <h4 className="mb-4 font-semibold text-white">Reach Us</h4>
-          <ul className="space-y-3 text-sm">
-            {phones.map((p) => (
-              <li key={p.href} className="flex gap-3">
-                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-[var(--lime)]" aria-hidden />
-                <div>
-                  <span className="block text-xs text-white/55">{p.label}</span>
-                  <a href={p.href} className="font-medium transition hover:text-white">
-                    {p.number}
+          <ul className="space-y-4 text-sm">
+            {DIRECTORS.map((d) => (
+              <li key={d.id}>
+                <p className="font-semibold text-white">{d.name}</p>
+                <p className="text-xs text-white/55">{d.role}</p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  <a
+                    href={`tel:${d.tel}`}
+                    className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-white/5 px-2.5 py-1 text-xs font-medium transition hover:bg-white/15"
+                  >
+                    <Phone className="h-3 w-3" aria-hidden />
+                    {d.phone}
+                  </a>
+                  <a
+                    href={whatsappUrl(d.whatsapp)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-white/5 px-2.5 py-1 text-xs font-medium transition hover:bg-white/15"
+                  >
+                    <WhatsAppIcon className="h-3 w-3" />
+                    WhatsApp
+                  </a>
+                  <a
+                    href={`mailto:${d.email}`}
+                    className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-white/5 px-2.5 py-1 text-xs font-medium transition hover:bg-white/15"
+                  >
+                    <Mail className="h-3 w-3" aria-hidden />
+                    Email
                   </a>
                 </div>
               </li>
             ))}
-            <li className="flex gap-3">
+            <li className="flex gap-3 pt-1">
               <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[var(--lime)]" aria-hidden />
               <div>
-                <span className="block text-xs text-white/55">Email</span>
+                <span className="block text-xs text-white/55">General email</span>
                 <a
                   href={`mailto:${CONTACT_EMAIL}`}
                   className="font-medium transition hover:text-white"
@@ -102,10 +100,10 @@ export function Footer() {
           </ul>
         </div>
 
-        <div>
+        <div className="min-w-0 lg:col-span-3">
           <h4 className="mb-4 font-semibold text-white">Offices</h4>
           <ul className="space-y-4 text-sm">
-            {offices.map((office) => (
+            {OFFICES.map((office) => (
               <li key={office.short} className="flex gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[var(--lime)]" aria-hidden />
                 <div>
@@ -130,8 +128,7 @@ export function Footer() {
 
       <div className="border-t border-white/10">
         <div className="container-x flex flex-col items-center justify-between gap-4 py-6 text-xs text-white/55 sm:flex-row">
-          <p>© {new Date().getFullYear()} Sargas Group. All rights reserved.</p>
-          
+          <p>© {new Date().getFullYear()} Sargas. All rights reserved.</p>
         </div>
       </div>
     </footer>

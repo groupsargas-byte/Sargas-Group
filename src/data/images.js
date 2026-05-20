@@ -1,13 +1,19 @@
-/** Replace with local files in `public/` or `src/assets/` when you add images. */
-export const logo =
-  "https://res.cloudinary.com/dajh7qn7v/image/upload/v1778769154/ChatGPT_Image_May_14__2026__07_51_57_PM-removebg-preview_li3zeh.png";
+/** Brand and page images (Cloudinary). */
+export const logoHeader =
+  "https://res.cloudinary.com/dajh7qn7v/image/upload/v1779251588/ChatGPT_Image_May_20__2026__09_59_17_AM-removebg-preview_e4kier.png";
+
+export const logoFooter =
+  "https://res.cloudinary.com/dajh7qn7v/image/upload/v1779251588/ChatGPT_Image_May_20_2026_09_59_17_AM_jxzs4u.png";
+
+/** @deprecated Use logoHeader or logoFooter */
+export const logo = logoHeader;
 
 export const hero =
   "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=1920&q=80";
 export const about =
-  "https://res.cloudinary.com/dajh7qn7v/image/upload/v1778770688/ChatGPT_Image_May_14_2026_07_51_57_PM_k4ei6o.png";
+  "https://res.cloudinary.com/dajh7qn7v/image/upload/v1779251588/ChatGPT_Image_May_20_2026_09_59_17_AM_jxzs4u.png";
 export const serviceHazardous =
-  "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=1200&q=80";
+  "https://res.cloudinary.com/dajh7qn7v/image/upload/v1779251587/Hazardous_waste_egqxyu.jpg";
 export const serviceRecycling =
   "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80";
 export const serviceCommercial =

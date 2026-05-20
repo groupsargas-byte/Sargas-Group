@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
@@ -9,12 +8,15 @@ import {
   Clock,
   Wallet,
   FileBarChart,
-  Phone,
   Factory,
   ClipboardCheck,
 } from "lucide-react";
 import * as images from "@/data/images.js";
 import { Reveal, RevealStagger } from "@/components/site/Reveal.jsx";
+import { PhoneLinks } from "@/components/site/PhoneLinks.jsx";
+import { LazyImage } from "@/components/site/LazyImage.jsx";
+import { usePageSeo } from "@/hooks/usePageSeo.js";
+import { PAGE_SEO } from "@/lib/seo.js";
 
 /** Four service lines on home — full detail lives on `/services`. */
 const serviceTypes = [
@@ -85,26 +87,18 @@ const why = [
 ];
 
 export default function HomePage() {
-  useEffect(() => {
-    document.title = "Sargas Group — Engineering Sustainability | Waste Management India";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) {
-      meta.setAttribute(
-        "content",
-        "Sargas Group delivers hazardous & non-hazardous waste management, recycling, ETP/STP sludge handling and environmental advisory across India.",
-      );
-    }
-  }, []);
+  usePageSeo(PAGE_SEO.home);
 
   return (
     <>
       <section className="relative overflow-hidden bg-[var(--deep)]">
-        <img
+        <LazyImage
           src={images.hero}
-          alt="Sargas Group recycling facility"
+          alt="Sargas Group recycling facility — waste management operations in India"
           className="absolute inset-0 h-full w-full object-cover opacity-40"
           width={1920}
           height={1080}
+          priority
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[var(--deep)] via-[var(--deep)]/85 to-transparent" />
         <div className="hero-stagger container-x relative py-4 lg:py-16 text-white">
@@ -115,8 +109,8 @@ export default function HomePage() {
             Cleaner planet, <span className="text-[var(--lime)]">smarter</span> waste management.
           </h1>
           <p className="mt-6 max-w-xl text-white/75 text-lg">
-            Sargas Group delivers modern collection, hazardous waste handling, advanced recycling
-            and environmental advisory — built for industry, communities and the future.
+            Sargas Group delivers modern collection, Hazardous Waste Handling, Advanced Recycling
+            and Environmental Advisory — built for industry, communities and the future.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <Link to="/services" className="btn-lime">
@@ -146,10 +140,9 @@ export default function HomePage() {
       <section className="container-x py-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <Reveal direction="left" className="relative">
-            <img
+            <LazyImage
               src={images.about}
-              alt="Modern Sargas waste facility"
-              loading="lazy"
+              alt="Sargas Group waste management and recycling facility"
               width={1400}
               height={1000}
               className="rounded-3xl w-full aspect-[6/5] object-contain"
@@ -178,7 +171,7 @@ export default function HomePage() {
                 <div className="text-sm font-semibold text-[var(--primary)]">SEPL</div>
                 <div className="text-xs text-muted-foreground mt-1">Sargas Enviro Pvt. Ltd.</div>
                 <p className="text-sm mt-3">
-                  Hazardous industrial waste & Alternative Fuel and Raw Material (AFR) solutions.
+                  Hazardous Industrial Waste & Alternative Fuel and Raw Material (AFR) solutions.
                 </p>
               </div>
               <div className="rounded-2xl border border-border p-5 bg-card">
@@ -187,7 +180,7 @@ export default function HomePage() {
                   Sargas Waste Management Pvt. Ltd.
                 </div>
                 <p className="text-sm mt-3">
-                  Municipal, residential, commercial and non-hazardous waste at scale.
+                  Handles Industrial, Municipal, Residential, Commercial and Non-hazardous waste at scale.
                 </p>
               </div>
             </div>
@@ -223,10 +216,9 @@ export default function HomePage() {
                 className="card-lift group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-sm hover:border-[var(--primary)]/25"
               >
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img
+                  <LazyImage
                     src={s.image}
                     alt={s.title}
-                    loading="lazy"
                     width={1200}
                     height={900}
                     className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
@@ -335,12 +327,7 @@ export default function HomePage() {
             >
               Get a Quote <ArrowUpRight className="h-4 w-4" />
             </Link>
-            <a
-              href="tel:+919611969686"
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--lime-foreground)]/30 px-6 py-3 font-semibold"
-            >
-              <Phone className="h-4 w-4" /> +91 96119 69686
-            </a>
+            <PhoneLinks />
           </div>
         </div>
         </Reveal>

@@ -1,8 +1,11 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Phone, Target, Eye, Sparkles } from "lucide-react";
+import { ArrowUpRight, Target, Eye, Sparkles } from "lucide-react";
 import * as images from "@/data/images.js";
 import { Reveal, RevealStagger } from "@/components/site/Reveal.jsx";
+import { PhoneLinks } from "@/components/site/PhoneLinks.jsx";
+import { LazyImage } from "@/components/site/LazyImage.jsx";
+import { usePageSeo } from "@/hooks/usePageSeo.js";
+import { PAGE_SEO } from "@/lib/seo.js";
 
 const values = [
   ["Integrity", "Transparent and ethical operations"],
@@ -13,29 +16,20 @@ const values = [
 ];
 
 export default function AboutPage() {
-  useEffect(() => {
-    document.title = "About Sargas Group | Engineering Sustainability";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) {
-      meta.setAttribute(
-        "content",
-        "Learn about Sargas Group — our mission, vision, values and operating structure across SEPL and SWMPL.",
-      );
-    }
-  }, []);
+  usePageSeo(PAGE_SEO.about);
 
   return (
     <>
       <section className="container-x py-16 md:py-14">
         <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal direction="left" className="order-2 lg:order-1">
-            <img
+            <LazyImage
               src={images.about}
-              alt="Sargas Group waste and environmental operations"
-              loading="eager"
+              alt="Sargas Group waste and environmental operations in Bengaluru Rural"
               width={1400}
               height={1000}
               className="aspect-[2/1] w-full object-contain"
+              priority
             />
           </Reveal>
           <Reveal direction="right" className="order-1 lg:order-2">
@@ -128,7 +122,7 @@ export default function AboutPage() {
                 Technical · Regulated · AFR
               </p>
               <p className="mt-5 text-base leading-relaxed text-muted-foreground transition-colors group-hover:text-white/90">
-                Focused on hazardous industrial waste management and Alternative Fuel &amp; Raw
+                Focused on Hazardous Industrial Waste management and Alternative Fuel &amp; Raw
                 Material (AFR) solutions, requiring specialized handling, technical processing, and
                 strict regulatory compliance.
               </p>
@@ -145,7 +139,7 @@ export default function AboutPage() {
                 Collection · Recycling · Non-hazardous
               </p>
               <p className="mt-5 text-base leading-relaxed text-muted-foreground transition-colors group-hover:text-white/90">
-                Handles municipal, residential, commercial, and non-hazardous waste, providing
+                Handles Industrial, Municipal, Residential, Commercial, and Non-Hazardous Waste, providing
                 large-scale collection, recycling, and processing services.
               </p>
             </div>
@@ -180,13 +174,7 @@ export default function AboutPage() {
             >
               Get a Quote <ArrowUpRight className="h-4 w-4" />
             </Link>
-            <a
-              href="tel:+919611969686"
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--lime-foreground)]/35 px-6 py-3 font-semibold"
-            >
-              <Phone className="h-4 w-4" aria-hidden />
-              +91 96119 69686
-            </a>
+            <PhoneLinks />
           </div>
         </div>
         </Reveal>

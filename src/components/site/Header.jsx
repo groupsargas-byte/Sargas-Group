@@ -3,7 +3,9 @@ import { createPortal } from "react-dom";
 import { NavLink } from "react-router-dom";
 import { ArrowUpRight, Phone, Menu, X } from "lucide-react";
 import * as images from "@/data/images.js";
+import { DIRECTORS } from "@/data/contact.js";
 import { scrollToTop } from "@/lib/scroll-to-top.js";
+import { LazyImage } from "@/components/site/LazyImage.jsx";
 
 const nav = [
   { to: "/", label: "Home", end: true },
@@ -86,25 +88,28 @@ function MobileMenu({ open, onClose }) {
         </div>
 
         <div
-          className="container-x shrink-0 space-y-4 border-t border-border/60 py-8 animate-in fade-in slide-in-from-bottom duration-300 fill-mode-both"
+          className="container-x shrink-0 space-y-3 border-t border-border/60 py-8 animate-in fade-in slide-in-from-bottom duration-300 fill-mode-both"
           style={{ animationDelay: "320ms" }}
         >
-          <a
-            href="tel:+919611969686"
-            className="flex items-center gap-3 rounded-2xl border border-border bg-card px-5 py-4 transition-colors hover:border-[var(--primary)]/30"
-          >
-            <span className="grid h-11 w-11 place-items-center rounded-full bg-[var(--primary)] text-primary-foreground">
-              <Phone className="h-5 w-5" />
-            </span>
-            <div>
-              <span className="block text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                Call us
+          {DIRECTORS.map((d) => (
+            <a
+              key={d.id}
+              href={`tel:${d.tel}`}
+              className="flex items-center gap-3 rounded-2xl border border-border bg-card px-5 py-4 transition-colors hover:border-[var(--primary)]/30"
+            >
+              <span className="grid h-11 w-11 place-items-center rounded-full bg-[var(--primary)] text-primary-foreground">
+                <Phone className="h-5 w-5" />
               </span>
-              <span className="font-display text-lg font-bold text-[var(--primary)]">
-                +91 96119 69686
-              </span>
-            </div>
-          </a>
+              <div>
+                <span className="block text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                  {d.name} · {d.role}
+                </span>
+                <span className="font-display text-lg font-bold text-[var(--primary)]">
+                  {d.phone}
+                </span>
+              </div>
+            </a>
+          ))}
           <NavLink
             to="/contact"
             onClick={() => {
@@ -146,7 +151,7 @@ export function Header() {
   return (
     <>
       <header className="header-enter sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/60">
-        <div className="container-x flex h-24 items-center justify-between gap-4">
+        <div className="container-x flex h-24 items-center justify-between gap-3">
           <NavLink
             to="/"
             className="flex shrink-0 items-center py-1"
@@ -155,13 +160,13 @@ export function Header() {
               scrollToTop();
             }}
           >
-            <img
-              src={images.logo}
-              alt="Sargas Group — Engineering Sustainability"
-              className="h-14 w-auto sm:h-16 md:h-20 max-h-20 object-contain object-left"
-              width={400}
+            <LazyImage
+              src={images.logoHeader}
+              alt="Sargas — Engineering Sustainability"
+              className="h-14 w-auto sm:h-16 md:h-[4.5rem] max-h-[4.5rem] object-contain object-left"
+              width={220}
               height={72}
-              decoding="async"
+              priority
             />
           </NavLink>
 
@@ -179,22 +184,46 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-3">
-            <a href="tel:+919611969686" className="flex items-center gap-2 text-sm">
-              <span className="grid h-9 w-9 place-items-center rounded-full bg-[var(--primary)] text-primary-foreground">
-                <Phone className="h-4 w-4" />
-              </span>
-              <span className="font-semibold">+91 96119 69686</span>
-            </a>
-            <NavLink to="/contact" className="btn-lime" onClick={scrollToTop}>
+          <div className="hidden xl:flex items-center gap-2">
+            {DIRECTORS.map((d) => (
+              <a
+                key={d.id}
+                href={`tel:${d.tel}`}
+                className="flex items-center gap-2 rounded-full border border-border/80 bg-card px-3 py-2 text-xs transition hover:border-[var(--primary)]/30"
+                title={`${d.name} — ${d.phone}`}
+              >
+                <span className="grid h-8 w-8 place-items-center rounded-full bg-[var(--primary)] text-primary-foreground">
+                  <Phone className="h-3.5 w-3.5" />
+                </span>
+                <span className="font-semibold text-[var(--primary)]">{d.phone}</span>
+              </a>
+            ))}
+            <NavLink to="/contact" className="btn-lime shrink-0" onClick={scrollToTop}>
               Get a Quote <ArrowUpRight className="h-4 w-4" />
+            </NavLink>
+          </div>
+
+          <div className="hidden md:flex xl:hidden items-center gap-2">
+            {DIRECTORS.map((d) => (
+              <a
+                key={d.id}
+                href={`tel:${d.tel}`}
+                className="grid h-9 w-9 place-items-center rounded-full bg-[var(--primary)] text-primary-foreground"
+                title={`${d.name} — ${d.phone}`}
+                aria-label={`Call ${d.name} at ${d.phone}`}
+              >
+                <Phone className="h-4 w-4" />
+              </a>
+            ))}
+            <NavLink to="/contact" className="btn-lime shrink-0 text-xs px-4 py-2.5" onClick={scrollToTop}>
+              Quote <ArrowUpRight className="h-3.5 w-3.5" />
             </NavLink>
           </div>
 
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="lg:hidden grid h-11 w-11 place-items-center rounded-full bg-secondary text-foreground transition-colors hover:bg-[var(--lime)]"
+            className="xl:hidden grid h-11 w-11 place-items-center rounded-full bg-secondary text-foreground transition-colors hover:bg-[var(--lime)]"
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}

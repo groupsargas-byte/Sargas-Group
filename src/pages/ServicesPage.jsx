@@ -1,8 +1,10 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import * as images from "@/data/images.js";
 import { Reveal } from "@/components/site/Reveal.jsx";
+import { LazyImage } from "@/components/site/LazyImage.jsx";
+import { usePageSeo } from "@/hooks/usePageSeo.js";
+import { PAGE_SEO } from "@/lib/seo.js";
 
 const groups = [
   {
@@ -13,7 +15,7 @@ const groups = [
         t: "Hazardous Waste Management",
         d: "Specialized handling of hazardous materials with strict adherence to safety and environmental regulations.",
         b: [
-          "TSDF-authorized disposal",
+          "Authorised Treatment, Storage and Disposal Facility",
           "Trained technical personnel",
           "Safety-first protocols",
           "Complete manifest documentation",
@@ -132,16 +134,7 @@ const groups = [
 ];
 
 export default function ServicesPage() {
-  useEffect(() => {
-    document.title = "Services — Hazardous, Recycling & Advisory | Sargas Group";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) {
-      meta.setAttribute(
-        "content",
-        "Hazardous waste, ETP/STP sludge, recycling, industrial & commercial waste, audits and zero-waste advisory.",
-      );
-    }
-  }, []);
+  usePageSeo(PAGE_SEO.services);
 
   return (
     <>
@@ -162,10 +155,9 @@ export default function ServicesPage() {
           <div className={gi % 2 === 0 ? "" : "container-x"}>
             <Reveal className="grid lg:grid-cols-3 gap-10">
               <div className="lg:sticky lg:top-28 self-start">
-                <img
+                <LazyImage
                   src={g.img}
-                  alt={g.eyebrow}
-                  loading="lazy"
+                  alt={`${g.eyebrow} — Sargas Group waste management services`}
                   width={1200}
                   height={900}
                   className="rounded-3xl w-full aspect-[4/3] object-cover"

@@ -72,7 +72,8 @@ export function ContactForm() {
       <input
         type="tel"
         name="phone"
-        placeholder="Phone (optional)"
+        required
+        placeholder="Phone"
         className={inputClass}
         disabled={submitting}
       />
