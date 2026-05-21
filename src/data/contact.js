@@ -5,7 +5,7 @@ export const CONTACT_EMAIL = "contact@sargasgroup.com";
 export const DIRECTORS = [
   {
     id: "jagadish",
-    name: "Jagadish K",
+    name: "Jagadish N",
     role: "Managing Director",
     phone: "+91 96119 69686",
     tel: "+919611969686",

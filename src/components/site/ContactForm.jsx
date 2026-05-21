@@ -4,10 +4,21 @@ import { Send } from "lucide-react";
 const WEB3FORMS_ACCESS_KEY = "9cafaf0d-3542-4aba-8b20-3be897d4281d";
 
 const inputClass =
-  "w-full rounded-full bg-white/10 border border-white/15 px-5 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-[var(--lime)] focus:ring-1 focus:ring-[var(--lime)]";
+  "w-full rounded-xl bg-white/[0.08] border border-white/12 px-4 py-2.5 text-sm text-white placeholder:text-white/40 transition focus:border-[var(--lime)] focus:bg-white/[0.1] focus:outline-none focus:ring-2 focus:ring-[var(--lime)]/25";
 
 const textareaClass =
-  "w-full rounded-3xl bg-white/10 border border-white/15 px-5 py-3 text-white placeholder:text-white/50 focus:outline-none focus:border-[var(--lime)] focus:ring-1 focus:ring-[var(--lime)]";
+  "w-full min-h-[7rem] resize-y rounded-xl bg-white/[0.08] border border-white/12 px-4 py-2.5 text-sm text-white placeholder:text-white/40 transition focus:border-[var(--lime)] focus:bg-white/[0.1] focus:outline-none focus:ring-2 focus:ring-[var(--lime)]/25";
+
+function Field({ label, children }) {
+  return (
+    <label className="block space-y-1.5">
+      <span className="text-[0.65rem] font-bold uppercase tracking-[0.16em] text-white/45">
+        {label}
+      </span>
+      {children}
+    </label>
+  );
+}
 
 export function ContactForm() {
   const [result, setResult] = useState("");
@@ -44,79 +55,103 @@ export function ContactForm() {
   };
 
   return (
-    <form onSubmit={onSubmit} className="rounded-3xl bg-[var(--deep)] text-white p-8 md:p-10 space-y-4 h-fit">
-      <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
-
-      <h2 className="font-display text-3xl font-bold">Send us a message</h2>
-      <p className="text-white/65 text-sm">We'll get back within one business day.</p>
-
-      <div className="grid sm:grid-cols-2 gap-4">
-        <input
-          type="text"
-          name="name"
-          required
-          placeholder="Your name"
-          className={inputClass}
-          disabled={submitting}
-        />
-        <input
-          type="email"
-          name="email"
-          required
-          placeholder="Email"
-          className={inputClass}
-          disabled={submitting}
-        />
+    <form
+      onSubmit={onSubmit}
+      className="w-full overflow-hidden rounded-3xl border border-[var(--primary)]/15 bg-[var(--deep)] text-white shadow-lg ring-1 ring-white/5"
+    >
+      <div className="relative border-b border-white/10 px-6 py-5 text-center">
+        <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-[var(--lime)] to-transparent" />
+        <h2 className="font-display text-xl font-bold tracking-tight md:text-2xl">
+          Send us a message
+        </h2>
+        <p className="mt-1.5 text-xs text-white/55">We&apos;ll get back within one business day.</p>
       </div>
 
-      <input
-        type="tel"
-        name="phone"
-        required
-        placeholder="Phone"
-        className={inputClass}
-        disabled={submitting}
-      />
-      <input
-        type="text"
-        name="subject"
-        placeholder="Subject"
-        className={inputClass}
-        disabled={submitting}
-      />
-      <textarea
-        name="message"
-        required
-        rows={5}
-        placeholder="How can we help?"
-        className={textareaClass}
-        disabled={submitting}
-      />
+      <div className="space-y-4 p-6">
+        <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
 
-      <button
-        type="submit"
-        disabled={submitting}
-        className="btn-lime w-full justify-center disabled:opacity-60 disabled:pointer-events-none"
-      >
-        {submitting ? (
-          "Sending…"
-        ) : (
-          <>
-            Send message <Send className="h-4 w-4" />
-          </>
-        )}
-      </button>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Field label="Name">
+            <input
+              type="text"
+              name="name"
+              required
+              placeholder="Your name"
+              className={inputClass}
+              disabled={submitting}
+            />
+          </Field>
+          <Field label="Email">
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="you@company.com"
+              className={inputClass}
+              disabled={submitting}
+            />
+          </Field>
+        </div>
 
-      {result ? (
-        <p
-          role="status"
-          className={`text-sm text-center ${
-            result.includes("successfully") ? "text-[var(--lime)]" : "text-red-300"
-          }`}
+        <Field label="Phone">
+          <input
+            type="tel"
+            name="phone"
+            required
+            placeholder="+91 …"
+            className={inputClass}
+            disabled={submitting}
+          />
+        </Field>
+
+        <Field label="Subject">
+          <input
+            type="text"
+            name="subject"
+            placeholder="How can we help?"
+            className={inputClass}
+            disabled={submitting}
+          />
+        </Field>
+
+        <Field label="Message">
+          <textarea
+            name="message"
+            required
+            rows={4}
+            placeholder="Tell us about your facility or waste programme…"
+            className={textareaClass}
+            disabled={submitting}
+          />
+        </Field>
+
+        <button
+          type="submit"
+          disabled={submitting}
+          className="btn-lime mt-1 w-full justify-center py-3 text-sm font-semibold disabled:pointer-events-none disabled:opacity-60"
         >
-          {result}
-        </p>
-      ) : null}
+          {submitting ? (
+            "Sending…"
+          ) : (
+            <>
+              Send message <Send className="h-4 w-4" />
+            </>
+          )}
+        </button>
+
+        {result ? (
+          <p
+            role="status"
+            className={`rounded-xl px-3 py-2.5 text-center text-xs leading-relaxed ${
+              result.includes("successfully")
+                ? "border border-[var(--lime)]/30 bg-[var(--lime)]/10 text-[var(--lime)]"
+                : "border border-red-400/20 bg-red-500/10 text-red-200"
+            }`}
+          >
+            {result}
+          </p>
+        ) : null}
+      </div>
     </form>
   );
 }
