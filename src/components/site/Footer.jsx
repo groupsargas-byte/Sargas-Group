@@ -79,7 +79,7 @@ export function Footer() {
 
           <div>
             <FooterSectionTitle tone="white">General enquiries</FooterSectionTitle>
-            <div className="mt-3">
+            <div className="mt-0">
               <GeneralEnquiries variant="dark" />
             </div>
           </div>
