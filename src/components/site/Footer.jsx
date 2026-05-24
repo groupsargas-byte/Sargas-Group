@@ -67,21 +67,26 @@ export function Footer() {
         </div>
 
         {/* Reach us · General enquiries · Offices */}
-        <div className="min-w-0 space-y-8 lg:col-span-7 lg:border-l lg:border-white/10 lg:pl-8">
+        <div className="min-w-0 space-y-6 lg:col-span-7 lg:border-l lg:border-white/10 lg:pl-16">
           <div>
             <FooterSectionTitle>Reach us</FooterSectionTitle>
-            <div className="mt-4 grid items-stretch gap-4 sm:grid-cols-2">
+            <div className="mt-3 grid gap-4 sm:grid-cols-2 sm:gap-5">
               {DIRECTORS.map((d) => (
                 <FooterPersonBlock key={d.id} person={d} />
               ))}
             </div>
           </div>
 
-          <GeneralEnquiries variant="dark" />
+          <div>
+            <FooterSectionTitle tone="white">General enquiries</FooterSectionTitle>
+            <div className="mt-3">
+              <GeneralEnquiries variant="dark" />
+            </div>
+          </div>
 
           <div>
             <FooterSectionTitle>Offices</FooterSectionTitle>
-            <div className="mt-4 grid items-stretch gap-4 sm:grid-cols-2">
+            <div className="mt-3 grid gap-4 sm:grid-cols-2 sm:gap-5">
               {OFFICES.map((office) => (
                 <FooterOfficeBlock key={office.short} office={office} />
               ))}
