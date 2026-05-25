@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
 
+# SPA routes — allow crawlers to fetch static shell; per-page meta is set client-side
+Allow: /about
+Allow: /services
+Allow: /certifications
+Allow: /contact
+
 Sitemap: https://sargasgroup.com/sitemap.xml

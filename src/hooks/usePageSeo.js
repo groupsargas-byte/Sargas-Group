@@ -8,6 +8,7 @@ export function usePageSeo({
   image,
   noindex = false,
   includeOrganizationSchema = false,
+  keywords,
 }) {
   useEffect(() => {
     setPageSeo({
@@ -17,6 +18,7 @@ export function usePageSeo({
       image,
       noindex,
       includeOrganizationSchema,
+      keywords,
     });
-  }, [title, description, path, image, noindex, includeOrganizationSchema]);
+  }, [title, description, path, image, noindex, includeOrganizationSchema, keywords]);
 }
