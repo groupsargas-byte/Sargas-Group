@@ -14,28 +14,29 @@ export default function ContactPage() {
 
   return (
     <div className="flex flex-1 flex-col bg-secondary/40">
-      <section className="container-x flex-1 py-12 pb-12 md:py-16 md:pb-16 lg:py-10">
-        <div className="ml-auto w-full max-w-5xl lg:max-w-6xl">
-          <div className="grid items-center gap-4 sm:gap-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-5">
-            <Reveal direction="right">
-              <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-[var(--primary)] md:text-5xl lg:text-6xl">
+      <section className="container-x flex-1 py-8 pb-10 sm:py-12 sm:pb-12 md:py-16 md:pb-16 lg:py-10">
+        <div className="w-full lg:ml-auto lg:max-w-6xl">
+          {/* Mobile: text + image in one row; desktop: wider text column + image */}
+          <div className="flex items-start gap-3 sm:gap-4 lg:grid lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-5">
+            <Reveal direction="right" className="min-w-0 flex-1">
+              <h1 className="font-display text-[1.65rem] font-bold leading-[1.15] tracking-tight text-[var(--primary)] sm:text-4xl md:text-5xl lg:text-6xl">
                 We&apos;re ready to assist you.
               </h1>
-              <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:mt-5 sm:text-base md:mt-6 md:text-lg">
                 Speak to our experts about a tailored waste management programme for your facility,
                 society, or commercial complex.
               </p>
             </Reveal>
             <Reveal
               direction="left"
-              className="relative justify-self-end overflow-hidden rounded-3xl lg:translate-x-3 xl:translate-x-5"
+              className="relative shrink-0 translate-x-1 self-center overflow-hidden sm:translate-x-0 lg:justify-self-end lg:translate-x-3 xl:translate-x-5"
             >
               <LazyImage
                 src={images.contactHero}
                 alt="Sargas recycling and waste management services"
                 width={1920}
                 height={1280}
-                className="aspect-[3/2] max-h-[220px] w-auto max-w-[min(100%,300px)] object-contain object-right sm:max-h-[260px] lg:max-h-[280px]"
+                className="aspect-square max-h-[7.5rem] w-auto max-w-[7.5rem] object-contain object-right sm:aspect-[3/2] sm:max-h-[200px] sm:max-w-[min(100%,220px)] md:max-h-[240px] lg:max-h-[280px] lg:max-w-[300px]"
                 priority
               />
             </Reveal>
